@@ -25,11 +25,11 @@ def solve_questions(questions_text):
     solutions = []
     
     for i, question in enumerate(questions):
-        prompt = f"Solve the following question with a detailed explanation. If it's related to OOPJ, provide the answer in Java:\n\n{question}"
+        prompt = f"Ypu will be given question what you have to is to solve them. If it's related to OOPJ, provide the answer in Java:\n\n{question}"
         
         for attempt in range(3):  # Retry up to 3 times
             try:
-                model = genai.GenerativeModel("gemini-1.5-pro")
+                model = genai.GenerativeModel("gemini-2.0-flash")
                 response = model.generate_content(prompt)
                 full_response = response.text if response and hasattr(response, 'text') else "[No response received]"
                 solutions.append(f"**Question {i+1} Solution:**\n{full_response}\n\n")
