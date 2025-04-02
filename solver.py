@@ -25,7 +25,7 @@ def solve_questions(questions_text):
     solutions = []
     
     for i, question in enumerate(questions):
-        prompt = f"Ypu will be given question what you have to is to solve them. If it's related to OOPJ, provide the answer in Java:\n\n{question}"
+        prompt = f"Ypu will be given question what you have to is to solve them no extra explanation just to the point answe take your time and give the best solution. If it's related to OOPJ, provide the answer in Java:\n\n{question}"
         
         for attempt in range(3):  # Retry up to 3 times
             try:
