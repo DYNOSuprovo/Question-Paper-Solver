@@ -3,7 +3,7 @@ import os
 from google import generativeai as genai
 from dotenv import load_dotenv
 
-# Load API Key
+# Load API key from .env
 load_dotenv()
 extractor_api_key = os.getenv("EXTRACTOR_API_KEY")
 
@@ -19,16 +19,12 @@ NO SOLUTION JUST THE QUESTION PAPER
 JUST GIVE THE TEXT FROM THE QUESTION PAPER IN A USER-READABLE FORMAT"""
     
     try:
-        # Upload the PDF file (file-like object)
-        uploaded_file = genai.upload_file(
-            pdf_file,
-            file_name=pdf_file.name,
-            mime_type="application/pdf"
-        )
+        # Pass the file-like object directly (no extra kwargs)
+        uploaded_file = genai.upload_file(pdf_file)
         
         model = genai.GenerativeModel("gemini-2.0-flash")
         
-        # Generate content with prompt and uploaded file reference
+        # Generate content with prompt and file reference
         response = model.generate_content(
             prompt=prompt,
             files=[uploaded_file]
